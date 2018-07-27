@@ -38,18 +38,22 @@ namespace PostingGroupVK
                 Password = pass,
                 Settings = scope
             });
+
             if (vk.IsAuthorized)
             {
-                label3.Text = "AUTHORISED";
-            }
-            else
+                var info = vk.Account.GetProfileInfo();
+                authorizeBox.Text = info.FirstName + " " + info.LastName;
+                authPanel.Visible = false;
+            }else
             {
-                label3.Text = "NONE";
+                authorizeBox.Text = "Authorised filed, please try again!";
             }
         }
 
         private void btnSrch_Click(object sender, EventArgs e)
         {
+            //onClick search button
+            
             if (vk.IsAuthorized)
             {
                 int cnt = 0;
@@ -87,7 +91,7 @@ namespace PostingGroupVK
                                 {
                                     dataGridView1.Columns.Add(secondColumn);
                                 }
-                                dataGridView1.Rows[cnt].Cells[albCnt + 3].Value = album.Id;  //.Value = album.Id;
+                                dataGridView1.Rows[cnt].Cells[albCnt + 3].Value = album.Id; 
                                 albCnt++;
                             }
                         }
@@ -102,6 +106,7 @@ namespace PostingGroupVK
                     }
                 }
             }
+            
         }
 
         private void btnSnd_Click(object sender, EventArgs e)
@@ -171,5 +176,6 @@ namespace PostingGroupVK
                 this.Close();
             }
         }
+        
     }
 }
