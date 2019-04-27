@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VkNet;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model;
 using VkNet.Model.RequestParams;
-
 namespace PostingGroupVK
 {
     public partial class Form1 : Form
@@ -24,6 +18,7 @@ namespace PostingGroupVK
         public Form1()
         {
             InitializeComponent();
+            openFileDialog1.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -53,15 +48,13 @@ namespace PostingGroupVK
         private void btnSrch_Click(object sender, EventArgs e)
         {
             //onClick search button
-            
             if (vk.IsAuthorized)
             {
                 int cnt = 0;
-                int totalCnt;
-                var groups = vk.Groups.Search(out totalCnt, new GroupsSearchParams{ Query = txtSrch.Text, Count=100 });
+                var groups = vk.Groups.Search(new GroupsSearchParams{ Query = txtSrch.Text, Count=100 });
                 foreach (var group in groups)
                 {
-                    var getted = vk.Groups.GetById(group.Id, GroupsFields.CanPost | GroupsFields.CanSeelAllPosts | GroupsFields.MembersCount);
+                    var getted = vk.Groups.GetById(null, group.Id.ToString(), GroupsFields.CanPost | GroupsFields.CanSeelAllPosts | GroupsFields.MembersCount).FirstOrDefault() ;
                     bool canPost = getted.CanPost;
                     bool pblcGrp = getted.CanSeelAllPosts;
                     bool valid;
@@ -102,7 +95,6 @@ namespace PostingGroupVK
                         finally {
                             cnt++;
                         }
-                        
                     }
                 }
             }
@@ -119,63 +111,131 @@ namespace PostingGroupVK
                 for (int row = 0; dataGridView1.RowCount - 1 > row; row++)
                 {
                     var groupId = long.Parse(dataGridView1.Rows[row].Cells[2].Value.ToString());
-                      
-                      var photos = vk.Photo.Get(new PhotoGetParams
-                      {
-                          Count = 4,
-                          AlbumId = PhotoAlbumType.Id(int.Parse(albumID.Text)),
-                          OwnerId = vk.UserId
-                      });
-
-                    WallPostParams wpp = new WallPostParams
+                    if (albumID.Text != "")
                     {
-                        Message = msgWall.Text,
-                        OwnerId = 0-groupId,
-                        Attachments = photos 
-                      };  
-                      vk.Wall.Post(wpp);
-
-                    //
+                        var photos = vk.Photo.Get(new PhotoGetParams
+                        {
+                            Count = 4,
+                            AlbumId = PhotoAlbumType.Id(int.Parse(albumID.Text)),
+                            OwnerId = vk.UserId
+                        });
+                        WallPostParams wpp = new WallPostParams
+                        {
+                            Message = msgWall.Text,
+                            OwnerId = 0 - groupId,
+                            Attachments = photos
+                        };
+                        vk.Wall.Post(wpp);
+                    }
+                    else {
+                        WallPostParams wpp = new WallPostParams
+                        {
+                            Message = msgWall.Text,
+                            OwnerId = 0 - groupId
+                        };
+                        vk.Wall.Post(wpp);
+                    }
 
                     for (int cel = 3; dataGridView1.ColumnCount - 1 > cel && dataGridView1.Rows[row].Cells[cel].Value != null; cel++)
                     {
-                        try { 
-                            long albumId = long.Parse(dataGridView1.Rows[row].Cells[cel].Value.ToString());
-                            var ups = vk.Photo.GetUploadServer(albumId, groupId);
-                            rf[0] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, System.Windows.Forms.Application.StartupPath + @"\file1.jpg"));
-                            rf[1] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, System.Windows.Forms.Application.StartupPath + @"\file2.jpg"));
-                            rf[2] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, System.Windows.Forms.Application.StartupPath + @"\file3.jpg"));
-                            rf[3] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, System.Windows.Forms.Application.StartupPath + @"\file4.jpg"));
-                            for (int i = 0; i < 4; i++)
+                        if (dataGridView1.Rows[row].Cells[cel].Value.ToString() != "")
+                        {
+                            try
                             {
-                                var sPhotos = vk.Photo.Save(new PhotoSaveParams
+                                long albumId = long.Parse(dataGridView1.Rows[row].Cells[cel].Value.ToString());
+                                var ups = vk.Photo.GetUploadServer(albumId, groupId);
+                                rf[0] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, Application.StartupPath + @"\file1.jpg"));
+                                rf[1] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, Application.StartupPath + @"\file2.jpg"));
+                                rf[2] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, Application.StartupPath + @"\file3.jpg"));
+                                rf[3] = Encoding.ASCII.GetString(wc.UploadFile(ups.UploadUrl, Application.StartupPath + @"\file4.jpg"));
+                                for (int i = 0; i < 4; i++)
                                 {
-                                    SaveFileResponse = rf[i],
-                                    GroupId = groupId,
-                                    AlbumId = albumId
-                                });
+                                    var sPhotos = vk.Photo.Save(new PhotoSaveParams
+                                    {
+                                        SaveFileResponse = rf[i],
+                                        GroupId = groupId,
+                                        AlbumId = albumId
+                                    });
+                                    Thread.Sleep(500);
+                                } // for (int i = 0; i < 4; i++)
                             }
-                        }   
+                            catch
+                            {
+                                Debugger.Log(1, "Exception", "Exception");
+                            }
+                            Thread.Sleep(1000);
+                        } // for (int cel = 3; dataGridView1.ColumnCount - 1 > cel && dataGridView1.Rows[row].Cells[cel].Value != null; cel++)
+                        Thread.Sleep(5000);
+                    }
+                } //  for (int row = 0; dataGridView1.RowCount - 1 > row; row++)
+            }  //  if (dataGridView1.ColumnCount > 3)
+
+        }
+
+        private void btn_cls_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void impBtn_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            string fileName = openFileDialog1.FileName;
+            string[] arrstr = File.ReadAllLines(fileName);
+            int mCnt = 0;
+            if (vk.IsAuthorized)
+            {
+                foreach (string id in arrstr)
+                {
+                    var getted = vk.Groups.GetById(null, id, GroupsFields.CanPost | GroupsFields.CanSeelAllPosts | GroupsFields.MembersCount).FirstOrDefault();
+                    bool canPost = getted.CanPost;
+                    bool pblcGrp = getted.CanSeelAllPosts;
+                    bool valid;
+                    valid = (getted.MembersCount > membersCnt.Value);
+
+                    if(valid && canPost && pblcGrp)
+                    {
+                        dataGridView1.Rows.Add();
+                        dataGridView1.Rows[mCnt].Cells[0].Value = getted.Name;
+                        dataGridView1.Rows[mCnt].Cells[1].Value = canPost;
+                        dataGridView1.Rows[mCnt].Cells[2].Value = getted.Id;
+                        try
+                        {
+                            PhotoGetAlbumsParams pgap = new PhotoGetAlbumsParams
+                            {
+                                OwnerId = 0 - getted.Id,
+
+                            };
+                            var albums = vk.Photo.GetAlbums(pgap);
+                            int albCnt = 0;
+                            foreach (var album in albums)
+                            {
+                                DataGridViewTextBoxColumn secondColumn = new DataGridViewTextBoxColumn();
+                                secondColumn.HeaderText = "Name " + albCnt;
+                                secondColumn.Name = albCnt.ToString();
+                                if (dataGridView1.ColumnCount <= albCnt + 3)
+                                {
+                                    dataGridView1.Columns.Add(secondColumn);
+                                }
+                                dataGridView1.Rows[mCnt].Cells[albCnt + 3].Value = album.Id;
+                                albCnt++;
+                            }
+                        }
                         catch
                         {
                             Debugger.Log(1, "Exception", "Exception");
                         }
+                        finally
+                        {
+                            mCnt++;
+                        }
+
                     }
+
                 }
-               
-            }
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            DateTime date1 = new DateTime(2917, 10, 7, 7, 00, 00);
-            DateTime nowDate = DateTime.Now;
-            if (date1 <= nowDate)
-            {
-                this.Close();
             }
         }
-        
     }
 }
