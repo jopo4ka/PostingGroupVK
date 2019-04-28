@@ -163,9 +163,9 @@ namespace PostingGroupVK
                             {
                                 Debugger.Log(1, "Exception", "Exception");
                             }
-                            Thread.Sleep(1000);
+                            Thread.Sleep(1000 * (int)numKD1.Value); // КД между альбомами
                         } // for (int cel = 3; dataGridView1.ColumnCount - 1 > cel && dataGridView1.Rows[row].Cells[cel].Value != null; cel++)
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000 * (int)numKD2.Value); // КД между группами
                     }
                 } //  for (int row = 0; dataGridView1.RowCount - 1 > row; row++)
             }  //  if (dataGridView1.ColumnCount > 3)

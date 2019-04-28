@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -50,14 +50,18 @@
             this.membersCnt = new System.Windows.Forms.NumericUpDown();
             this.msgWall = new System.Windows.Forms.TextBox();
             this.authorizeBox = new System.Windows.Forms.GroupBox();
-            this.authPanel = new System.Windows.Forms.Panel();
-            this.btn_cls = new System.Windows.Forms.Button();
             this.impBtn = new System.Windows.Forms.Button();
+            this.authPanel = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.numKD1 = new System.Windows.Forms.NumericUpDown();
+            this.numKD2 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.membersCnt)).BeginInit();
             this.authorizeBox.SuspendLayout();
             this.authPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numKD1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numKD2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -124,9 +128,9 @@
             // 
             this.btnSnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSnd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSnd.Location = new System.Drawing.Point(774, 397);
+            this.btnSnd.Location = new System.Drawing.Point(701, 397);
             this.btnSnd.Name = "btnSnd";
-            this.btnSnd.Size = new System.Drawing.Size(312, 23);
+            this.btnSnd.Size = new System.Drawing.Size(385, 23);
             this.btnSnd.TabIndex = 3;
             this.btnSnd.Text = "Sending";
             this.btnSnd.UseVisualStyleBackColor = true;
@@ -134,39 +138,39 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(12, 76);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Size = new System.Drawing.Size(1074, 285);
             this.dataGridView1.TabIndex = 4;
             // 
@@ -200,7 +204,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(848, 374);
+            this.label4.Location = new System.Drawing.Point(700, 374);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 0;
@@ -210,7 +214,7 @@
             // 
             this.albumID.BackColor = System.Drawing.SystemColors.MenuText;
             this.albumID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.albumID.Location = new System.Drawing.Point(899, 371);
+            this.albumID.Location = new System.Drawing.Point(750, 370);
             this.albumID.Name = "albumID";
             this.albumID.Size = new System.Drawing.Size(100, 20);
             this.albumID.TabIndex = 1;
@@ -247,7 +251,7 @@
             this.msgWall.Location = new System.Drawing.Point(12, 368);
             this.msgWall.Multiline = true;
             this.msgWall.Name = "msgWall";
-            this.msgWall.Size = new System.Drawing.Size(751, 49);
+            this.msgWall.Size = new System.Drawing.Size(683, 49);
             this.msgWall.TabIndex = 6;
             // 
             // authorizeBox
@@ -265,30 +269,6 @@
             this.authorizeBox.TabStop = false;
             this.authorizeBox.Text = "Не авторизован";
             // 
-            // authPanel
-            // 
-            this.authPanel.Controls.Add(this.button1);
-            this.authPanel.Controls.Add(this.label1);
-            this.authPanel.Controls.Add(this.label2);
-            this.authPanel.Controls.Add(this.textBox1);
-            this.authPanel.Controls.Add(this.textBox2);
-            this.authPanel.Location = new System.Drawing.Point(16, 25);
-            this.authPanel.Name = "authPanel";
-            this.authPanel.Size = new System.Drawing.Size(1068, 39);
-            this.authPanel.TabIndex = 8;
-            // 
-            // btn_cls
-            // 
-            this.btn_cls.BackColor = System.Drawing.Color.Red;
-            this.btn_cls.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cls.Location = new System.Drawing.Point(1079, 2);
-            this.btn_cls.Name = "btn_cls";
-            this.btn_cls.Size = new System.Drawing.Size(20, 20);
-            this.btn_cls.TabIndex = 9;
-            this.btn_cls.Text = "X";
-            this.btn_cls.UseVisualStyleBackColor = false;
-            this.btn_cls.Click += new System.EventHandler(this.btn_cls_Click);
-            // 
             // impBtn
             // 
             this.impBtn.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -301,9 +281,48 @@
             this.impBtn.UseVisualStyleBackColor = false;
             this.impBtn.Click += new System.EventHandler(this.impBtn_Click);
             // 
+            // authPanel
+            // 
+            this.authPanel.Controls.Add(this.button1);
+            this.authPanel.Controls.Add(this.label1);
+            this.authPanel.Controls.Add(this.label2);
+            this.authPanel.Controls.Add(this.textBox1);
+            this.authPanel.Controls.Add(this.textBox2);
+            this.authPanel.Location = new System.Drawing.Point(16, 25);
+            this.authPanel.Name = "authPanel";
+            this.authPanel.Size = new System.Drawing.Size(1068, 39);
+            this.authPanel.TabIndex = 8;
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // numKD1
+            // 
+            this.numKD1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.numKD1.ForeColor = System.Drawing.SystemColors.Window;
+            this.numKD1.Location = new System.Drawing.Point(895, 370);
+            this.numKD1.Name = "numKD1";
+            this.numKD1.Size = new System.Drawing.Size(90, 20);
+            this.numKD1.TabIndex = 9;
+            // 
+            // numKD2
+            // 
+            this.numKD2.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.numKD2.ForeColor = System.Drawing.SystemColors.Window;
+            this.numKD2.Location = new System.Drawing.Point(994, 370);
+            this.numKD2.Name = "numKD2";
+            this.numKD2.Size = new System.Drawing.Size(90, 20);
+            this.numKD2.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(863, 374);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "КД";
             // 
             // Form1
             // 
@@ -311,16 +330,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1098, 432);
+            this.Controls.Add(this.numKD2);
+            this.Controls.Add(this.numKD1);
             this.Controls.Add(this.authPanel);
-            this.Controls.Add(this.btn_cls);
             this.Controls.Add(this.authorizeBox);
             this.Controls.Add(this.msgWall);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSnd);
             this.Controls.Add(this.albumID);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -329,6 +350,8 @@
             this.authorizeBox.PerformLayout();
             this.authPanel.ResumeLayout(false);
             this.authPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numKD1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numKD2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,9 +378,11 @@
         private System.Windows.Forms.TextBox msgWall;
         private System.Windows.Forms.GroupBox authorizeBox;
         private System.Windows.Forms.Panel authPanel;
-        private System.Windows.Forms.Button btn_cls;
         private System.Windows.Forms.Button impBtn;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.NumericUpDown numKD1;
+        private System.Windows.Forms.NumericUpDown numKD2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
